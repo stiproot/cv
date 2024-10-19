@@ -1,7 +1,7 @@
 Simon Stipcich 
-stipcich.simon@gmail.com 
-GitHub
-LinkedIn
+Email: stipcich.simon@gmail.com 
+GitHub: https://github.com/stiproot
+LinkedIn: https://www.linkedin.com/in/stiproot
 
 PROFILE
 I'm a software developer with a background in mathematics and physics.
@@ -25,12 +25,14 @@ KEY ACHIEVEMENTS
 - Lead developer of a collaborative XBOX RPG game involving City Varsity animators and UCT developers.
 
 PERSONAL PROJECTS
-I like developing productivity tools and frameworks. Here are some of my favorites:
-- ASQ, real-estate property web app. for people to provide "micro services" in renovating their homes. Stack: Angular, .NET, MySQL, Zoom, Node.js. link.
-- TaskTree, a framework for building and executing complex workflows. Stack: .NET. link.
-- F4Lang, a agentic workflow orchestration framework, based on TaskTree. Stack: .NET, SemanticKernel, Dapr. link.
-- DevOps CLI: tool for automating the creation of Work Items, Queries, and Dashboards in Azure DevOps. Stack: .NET, Azure DevOps API. link.
-- LangChain Lab: a personal "laboritory" for experimenting with LangChain, LangGraph and OpenAI. Working on codegen graph that generates a solution, from architecture blueprints to code. Stack: C4, LangChain, LangGraph, OpenAI, Python. link.
+I like developing productivity tools and frameworks.
+Here are some of my favorites:
+(oh, and the READMEs need some love, so please don't judge :P)
+- ASQ, real-estate property web app. for people to provide "micro services" in renovating their homes. Stack: Angular, .NET, MySQL, Zoom, Node.js. [link](https://github.com/stiproot/asq).
+- TaskTree, a framework for building and executing complex workflows. Stack: .NET. [link](https://github.com/stiproot/xo-tasktree).
+- F4Lang, a agentic workflow orchestration framework, based on TaskTree. Stack: .NET, SemanticKernel, Dapr. [link](https://github.com/stiproot/f4-lang).
+- DevOps CLI: tool for automating the creation of Work Items, Queries, and Dashboards in Azure DevOps. Stack: .NET, Azure DevOps API. [link](https://github.com/stiproot/xo-azdo-cli).
+- LangChain Lab: a personal "laboritory" for experimenting with LangChain, LangGraph and OpenAI. Working on codegen graph that generates a solution, from architecture blueprints to code. Stack: C4, LangChain, LangGraph, OpenAI, Python. [link](https://github.com/stiproot/langchain-lab/tree/main/graphs/codegen).
 
 EMPLOYMENT EXPERIENCE
 Derivco (Senior Developer) - 2022 to present

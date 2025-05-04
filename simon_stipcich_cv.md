@@ -39,10 +39,11 @@ Derivco (Senior Developer) - 2022 to present
 Derivco (Intermediate Developer) - 2019 to 2022
 
 Healthbridge (Full Stack Developer) - 2017 to 2019
-- Maintained and developed features for healthcare applications. - Contributed to iHealth, SASA, ASSM projects.
-- Used ASP.NET, MVC, MSSQL, AngularJS, and more.
+- Evolved and maintained healthcare systems - Contributed to iHealth, SASA, ASSM projects, to name a few.
+- Primarily used ASP.NET, MVC, MSSQL, AngularJS, Kendo, Telerik and vanilla JS.
 
 InfoSys Software Solutions (Full Stack Developer) - 2014 to 2017
+- Built and maintained web applications for various clients. Including large scale government projects, like Metrorail and TOMS (Train Operating Management System).
 - Developed web applications using ASP.NET, MVC, AngularJS, MSSQL, and more. - Collaborated in an Agile development environment.
      
 EDUCATION

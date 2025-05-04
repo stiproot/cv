@@ -8,12 +8,12 @@ I'm a software developer with a background in mathematics and physics.
 My journey in computer science started during my time at UCT, and, well, the rest is history :)
 
 KEY SKILLS
-- Languages: C#, Python, JavaScript, Typescript, SQL
+- Languages: C#, Python, JavaScript, Typescript, SQL, Rust (learning)
 - Operating Systems (in order of preference): Linux, Mac, Windows 
 - Tools: Vim, Git, Azure DevOps, Docker, Kubernetes, OpenAI
-- CloudOps: Azure, Confluent Cloud, Cosmos
-- Frameworks: .NET, Angular, IONIC, Node.js, Vue, Dapr, Kafka, RabbitMQ, d3.js, LangChain, LangGraph
-- Databases: PostgreSQL, MySQL, MSSQL, Couchbase, Cosmos, Mongo
+- CloudOps: Azure, AKS, Confluent Cloud, Cosmos
+- Frameworks: .NET, Angular, IONIC, Node.js, Vue, Dapr, Kafka, RabbitMQ, d3.js, LangChain, LangGraph, SemanticKernel
+- Databases: PostgreSQL, MySQL, MSSQL, Couchbase, Cosmos, Mongo, SQLLite
 
 KEY ACHIEVEMENTS
 - Architect & Lead Developer of Mandy (Project Metrics), a productivity tool used to track the progress of projects at Derivco, and provide visualizations.

@@ -1,13 +1,16 @@
-Simon Stipcich 
-Email: stipcich.simon@gmail.com 
-GitHub: https://github.com/stiproot
-LinkedIn: https://www.linkedin.com/in/stiproot
+# Simon Stipcich 
 
-PROFILE
+**Email: code.stip.si@gmail.com**
+
+**GitHub: https://github.com/stiproot**
+
+**LinkedIn: https://www.linkedin.com/in/stiproot**
+
+**PROFILE**
 I'm a software developer with a background in mathematics and physics.
 My journey in computer science started during my time at UCT, and, well, the rest is history :)
 
-KEY SKILLS
+**KEY SKILLS**
 - Languages: C#, Python, JavaScript, Typescript, SQL, Rust (learning)
 - Operating Systems (in order of preference): Linux, Mac, Windows 
 - Tools: Vim, Git, Azure DevOps, Docker, Kubernetes, OpenAI
@@ -15,7 +18,7 @@ KEY SKILLS
 - Frameworks: .NET, Angular, IONIC, Node.js, Vue, Dapr, Kafka, RabbitMQ, d3.js, LangChain, LangGraph, SemanticKernel
 - Databases: PostgreSQL, MySQL, MSSQL, Couchbase, Cosmos, Mongo, SQLLite
 
-KEY ACHIEVEMENTS
+**(SOME) KEY ACHIEVEMENTS**
 - Architect & Lead Developer of Mandy (Project Metrics), a productivity tool used to track the progress of projects at Derivco, and provide visualizations.
 - Architect & Lead Developer of APC (Auto Promo Creation), using generative AI to build full, production worthy, solutions.
 - Lead Developer of Campaign Manager, a player retention tool at Derivco.
@@ -24,7 +27,7 @@ KEY ACHIEVEMENTS
 - Lead developer of DMOCC_IS, an incident reporting system for Metrorail.
 - Lead developer of a collaborative XBOX RPG game involving City Varsity animators and UCT developers.
 
-PERSONAL PROJECTS
+**PERSONAL PROJECTS**
 I like developing productivity tools and frameworks.
 Here are some of my favorites:
 (oh, and the READMEs need some love, so please don't judge :P)
@@ -34,7 +37,7 @@ Here are some of my favorites:
 - DevOps CLI: tool for automating the creation of Work Items, Queries, and Dashboards in Azure DevOps. Stack: .NET, Azure DevOps API. [link](https://github.com/stiproot/xo-azdo-cli).
 - LangChain Lab: a personal "laboritory" for experimenting with LangChain, LangGraph and OpenAI. Working on codegen graph that generates a solution, from architecture blueprints to code. Stack: C4, LangChain, LangGraph, OpenAI, Python. [link](https://github.com/stiproot/langchain-lab/tree/main/graphs/codegen).
 
-EMPLOYMENT EXPERIENCE
+**EMPLOYMENT EXPERIENCE**
 Derivco (Senior Developer) - 2022 to present
 Derivco (Intermediate Developer) - 2019 to 2022
 
@@ -46,9 +49,10 @@ InfoSys Software Solutions (Full Stack Developer) - 2014 to 2017
 - Built and maintained web applications for various clients. Including large scale government projects, like Metrorail and TOMS (Train Operating Management System).
 - Developed web applications using ASP.NET, MVC, AngularJS, MSSQL, and more. - Collaborated in an Agile development environment.
      
-EDUCATION
+**EDUCATION**
 University of Cape Town (2011 - 2013)
 BSc in Computer Science and Computer Game Development (incomplete)
-INTERESTS
+
+**INTERESTS**
 Cycling, running, gym, yoga, mathematics, physics, skateboarding and coding.
 REFERENCES Available upon request.

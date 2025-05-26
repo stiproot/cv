@@ -19,7 +19,17 @@ My journey in computer science started during my time at UCT, and, well, the res
 - Databases: PostgreSQL, MySQL, MSSQL, Couchbase, Cosmos, Mongo, SQLLite
 
 **(SOME) KEY ACHIEVEMENTS**
-- Architect & Lead Developer of Mandy (Project Metrics), a productivity tool used to track the progress of projects at Derivco, and provide visualizations.
+- Architect & Lead Developer of Project Metrics ("Mandy"), a productivity tool used at Derivco for tracking the health of projects.
+Created as a way to try and move away from a “meeting culture”.
+Microservice architecture, with the following stach:
+  - d3.js
+  - Vue.js 
+  - Python Fast APIs, for a workflow orchestration service, and a data management service.
+  - Node.js Express API for an auth. API (Okta integration) 
+  - .NET API for the Azure DevOps proxy API
+  - All built on Dapr as the “runtime”
+  - Cosmos DB as the state store
+
 - Architect & Lead Developer of APC (Auto Promo Creation), using generative AI to build full, production worthy, solutions.
 - Lead Developer of Campaign Manager, a player retention tool at Derivco.
 - Contributed to TOMS (Train Operating Management System) for Metrorail.

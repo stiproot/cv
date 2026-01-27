@@ -4,6 +4,9 @@ export default defineConfig({
   title: "Simon Stipcich",
   description: "Software Developer - Portfolio & CV",
 
+  // Base path for GitHub Pages (repository name)
+  base: '/cv/',
+
   // Clean URLs (remove .html extension)
   cleanUrls: true,
 

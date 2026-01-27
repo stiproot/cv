@@ -49,6 +49,7 @@ I'm a software developer with a background in mathematics and physics. My journe
 ### CloudOps
 
 <span class="tech-badge">Azure</span>
+<span class="tech-badge">Helm</span>
 <span class="tech-badge">AKS</span>
 <span class="tech-badge">Confluent Cloud</span>
 <span class="tech-badge">Cosmos</span>
@@ -59,11 +60,33 @@ I'm a software developer with a background in mathematics and physics. My journe
 
 ### Frameworks
 
-.NET, Angular, IONIC, Node.js, Vue, Dapr, Kafka, RabbitMQ, NATS, d3.js, LangChain, LangGraph, SemanticKernel, Expo, React Native, Supabase, Effect-TS
+<span class="tech-badge">.NET</span>
+<span class="tech-badge">Angular</span>
+<span class="tech-badge">IONIC</span>
+<span class="tech-badge">Node.js</span>
+<span class="tech-badge">Vue</span>
+<span class="tech-badge">Dapr</span>
+<span class="tech-badge">Kafka</span>
+<span class="tech-badge">RabbitMQ</span>
+<span class="tech-badge">NATS</span>
+<span class="tech-badge">d3.js</span>
+<span class="tech-badge">LangChain</span>
+<span class="tech-badge">LangGraph</span>
+<span class="tech-badge">SemanticKernel</span>
+<span class="tech-badge">Expo</span>
+<span class="tech-badge">React Native</span>
+<span class="tech-badge">Supabase</span>
+<span class="tech-badge">Effect-TS</span>
 
 ### Databases
 
-PostgreSQL, MySQL, MSSQL, Couchbase, Cosmos, MongoDB, SQLite
+<span class="tech-badge">PostgreSQL</span>
+<span class="tech-badge">MySQL</span>
+<span class="tech-badge">MSSQL</span>
+<span class="tech-badge">Couchbase</span>
+<span class="tech-badge">Cosmos</span>
+<span class="tech-badge">MongoDB</span>
+<span class="tech-badge">SQLite</span>
 
 ## Key Achievements
 

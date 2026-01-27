@@ -1,0 +1,127 @@
+/**
+ * VitePress Custom Theme - Portfolio Style
+ * Clean, professional design with focus on readability
+ */
+
+/* ============================================
+ * COLOR SYSTEM
+ * ============================================ */
+
+:root {
+  /* Professional blue-gray palette */
+  --vp-c-brand-1: #3b82f6;     /* Primary brand - blue */
+  --vp-c-brand-2: #2563eb;     /* Hover state */
+  --vp-c-brand-3: #1d4ed8;     /* Active state */
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.14);
+
+  /* Backgrounds */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f9fafb;
+  --vp-c-bg-elv: #ffffff;
+
+  /* Text colors */
+  --vp-c-text-1: #1f2937;      /* Primary text */
+  --vp-c-text-2: #4b5563;      /* Secondary text */
+  --vp-c-text-3: #6b7280;      /* Tertiary text */
+}
+
+/* Dark mode */
+.dark {
+  --vp-c-bg: #0f172a;
+  --vp-c-bg-alt: #1e293b;
+  --vp-c-bg-elv: #334155;
+
+  --vp-c-text-1: #f1f5f9;
+  --vp-c-text-2: #cbd5e1;
+  --vp-c-text-3: #94a3b8;
+}
+
+/* ============================================
+ * TYPOGRAPHY
+ * ============================================ */
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+/* ============================================
+ * HERO SECTION
+ * ============================================ */
+
+.VPHero .name {
+  font-size: 64px !important;
+  line-height: 1.2;
+}
+
+.VPHero .tagline {
+  font-size: 24px;
+  line-height: 1.5;
+  max-width: 600px;
+}
+
+/* ============================================
+ * CONTENT SECTIONS
+ * ============================================ */
+
+/* Skills list styling */
+.vp-doc ul {
+  margin: 16px 0;
+}
+
+.vp-doc li {
+  margin: 8px 0;
+  line-height: 1.7;
+}
+
+/* Project links */
+.vp-doc a {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* ============================================
+ * CUSTOM COMPONENTS
+ * ============================================ */
+
+/* Badge for tech stack */
+.tech-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 4px 4px 4px 0;
+  border-radius: 12px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Contact info styling */
+.contact-links {
+  display: flex;
+  gap: 24px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+  transition: all 0.2s ease;
+}
+
+.contact-links a:hover {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+}

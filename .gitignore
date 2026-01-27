@@ -1,1 +1,10 @@
 *.pdf
+
+# Node.js
+node_modules/
+package-lock.json
+
+# VitePress
+.vitepress/cache/
+.vitepress/dist/
+.temp/

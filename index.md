@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: Simon Stipcich
-  text: Software Developer
+  text: Software Engineer, Technical Lead and Solutions Architect
   tagline: Mathematics & Physics background. Building productivity tools and scalable solutions.
   actions:
     - theme: brand

@@ -145,6 +145,20 @@ A .NET library for building composable, type-safe task workflows (10K+ NuGet dow
 - **Stack**: .NET
 - **Links**: [GitHub](https://github.com/stiproot/xo-tasktree) | [NuGet](https://www.nuget.org/packages/Xo.TaskTree)
 
+### Lxi
+
+An AI-powered repository intelligence and collaboration platform that enables semantic code search and natural language querying of codebases.
+
+- **Stack**: .NET, Python, FastAPI, Dapr, MongoDB, ChromaDB, React, TypeScript
+- **Link**: [github.com/stiproot/lxi](https://github.com/stiproot/lxi)
+
+### mndy
+
+A data-driven project metrics and analytics platform for software development teams, bridging Azure DevOps and project reporting with real-time insights and behavioral analytics.
+
+- **Stack**: Vue 3, TypeScript, Python, FastAPI, Dapr, MongoDB, RabbitMQ, D3.js, Quasar Framework
+- **Link**: [github.com/stiproot/mndy](https://github.com/stiproot/mndy)
+
 ### F4Lang
 An agentic workflow orchestration framework, based on TaskTree.
 

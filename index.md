@@ -128,6 +128,7 @@ A player retention tool at Derivco focused on engaging and retaining users throu
 I enjoy developing productivity tools and frameworks. Here are some of my favorites:
 
 ### Trxy
+
 A social skateboarding community app that allows skaters to challenge each other, track their progress, and share their achievements through an event-driven social platform.
 
 - **Stack**: React Native, Expo, Supabase, PostgreSQL, Effect-TS, TypeScript
@@ -138,10 +139,11 @@ A social skateboarding community app that allows skaters to challenge each other
 - **Instagram**: [@trxy.skateboarding](https://instagram.com/trxy.skateboarding)
 
 ### TaskTree
-A framework for building and executing complex workflows.
+
+A .NET library for building composable, type-safe task workflows (10K+ NuGet downloads).
 
 - **Stack**: .NET
-- **Link**: [github.com/stiproot/xo-tasktree](https://github.com/stiproot/xo-tasktree)
+- **Links**: [GitHub](https://github.com/stiproot/xo-tasktree) | [NuGet](https://www.nuget.org/packages/Xo.TaskTree)
 
 ### F4Lang
 An agentic workflow orchestration framework, based on TaskTree.

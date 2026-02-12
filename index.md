@@ -165,11 +165,21 @@ An agentic workflow orchestration framework, based on TaskTree.
 - **Stack**: .NET, SemanticKernel, Dapr
 - **Link**: [github.com/stiproot/f4-lang](https://github.com/stiproot/f4-lang)
 
-### DevOps CLI
-Tool for automating the creation of Work Items, Queries, and Dashboards in Azure DevOps.
+### Xo.AzDO.Engine
 
-- **Stack**: .NET, Azure DevOps API
-- **Link**: [github.com/stiproot/xo-azdo-cli](https://github.com/stiproot/xo-azdo-cli)
+A .NET library for automating Azure DevOps operations including work item management, query creation, and dashboard automation with intelligent widget positioning. Published to NuGet for public use.
+
+**Key Features**:
+- Work item lifecycle management (create, clone hierarchies, update)
+- WIQL query building and execution
+- Automated dashboard creation with 10+ widget types
+- Intelligent collision-free widget positioning using rectangle packing algorithm
+- Multi-initiative dashboard support with dynamic layouts
+
+**Architecture**: Provider-Processor pattern with dependency injection, workflow orchestration for complex multi-step operations, and async/await throughout for optimal performance.
+
+- **Stack**: .NET 8.0, Azure DevOps REST API, Xo.TaskTree, Xo.Algo.RectangleCluster
+- **Links**: [GitHub](https://github.com/stiproot/xo-azdo-cli) | [NuGet](https://www.nuget.org/packages/Xo.AzDO.Engine)
 
 ### LangChain Lab
 A personal "laboratory" for experimenting with LangChain, LangGraph and OpenAI. Working on a codegen graph that generates solutions from architecture blueprints to code.

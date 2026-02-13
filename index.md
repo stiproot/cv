@@ -13,6 +13,9 @@ hero:
       text: LinkedIn Profile
       link: https://www.linkedin.com/in/stiproot
     - theme: alt
+      text: Download PDF
+      link: /cv/simon-stipcich-cv.pdf
+    - theme: alt
       text: Contact
       link: mailto:code.stip.si@gmail.com
 ---

@@ -41,6 +41,15 @@ jobs:
       - name: Build VitePress site
         run: npm run docs:build
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Generate PDF
+        run: npm run generate:pdf
+
+      - name: Rebuild site with PDF
+        run: npm run docs:build
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 

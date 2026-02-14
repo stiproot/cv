@@ -262,43 +262,7 @@ p {
  * ============================================ */
 
 @media print {
-  /* Hide interactive elements for PDF */
-  .VPNavBar,
-  .VPNav,
-  .VPSidebar,
-  .VPDocFooter,
-  .VPFooter {
-    display: none !important;
-  }
-
-  /* Optimize hero for print */
-  .VPHero {
-    padding-top: 24px !important;
-    padding-bottom: 24px !important;
-    page-break-after: avoid;
-  }
-
-  .VPHero .name {
-    font-size: 44px !important;
-  }
-
-  .VPHero .text {
-    font-size: 26px !important;
-  }
-
-  .VPHero .tagline {
-    font-size: 16px;
-  }
-
-  /* Hero actions - keep for contact info but style for print */
-  .VPHero .actions {
-    margin-top: 24px;
-  }
-
-  .VPHero .actions .VPButton {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
+  /* Basic print optimization - minimal CSS since we'll handle cleanup in the PDF script */
 
   /* Page breaks */
   h2 {
@@ -310,50 +274,13 @@ p {
     page-break-after: avoid;
   }
 
-  /* Keep project/employment sections together */
+  /* Keep sections together */
   h3 + p {
     page-break-before: avoid;
-  }
-
-  /* Avoid breaking tech badge groups */
-  .tech-badge {
-    page-break-inside: avoid;
-  }
-
-  /* Contact links - show URLs for print */
-  .contact-links a::after {
-    content: " (" attr(href) ")";
-    font-size: 11px;
-    color: var(--vp-c-text-3);
-  }
-
-  /* Links - show URLs */
-  .vp-doc a[href^="http"]::after {
-    content: " (" attr(href) ")";
-    font-size: 10px;
-    color: var(--vp-c-text-3);
-    word-break: break-all;
   }
 
   /* Ensure content fits width */
   .vp-doc {
     max-width: 100%;
-  }
-
-  /* Optimize spacing for PDF */
-  h2 {
-    margin-top: 32px;
-    margin-bottom: 16px;
-  }
-
-  h3 {
-    margin-top: 20px;
-    margin-bottom: 12px;
-  }
-
-  /* Remove hover effects */
-  .tech-badge:hover,
-  .contact-links a:hover {
-    transform: none !important;
   }
 }

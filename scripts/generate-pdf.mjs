@@ -45,6 +45,82 @@ async function generatePDF() {
   // Wait for fonts to load
   await page.waitForTimeout(2000);
 
+  console.log('Cleaning up page for PDF...');
+
+  // Clean up the page for PDF generation
+  await page.evaluate(() => {
+    // Remove all navigation elements
+    const selectorsToRemove = [
+      '.VPNavBar',
+      '.VPNav',
+      '.VPSidebar',
+      '.VPDocFooter',
+      '.VPFooter',
+      '.VPLocalNav',
+      '.VPSkipLink',
+      'nav',
+      'header',
+      '[class*="NavBar"]',
+      '[class*="Appearance"]',
+    ];
+
+    selectorsToRemove.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => el.remove());
+    });
+
+    // Remove Download PDF button from hero actions
+    document.querySelectorAll('a[href*="simon-stipcich-cv.pdf"]').forEach(el => {
+      el.remove();
+    });
+
+    // Fix tech badge spacing - add comma and space after each badge
+    document.querySelectorAll('.tech-badge').forEach((badge, index, badges) => {
+      // Add comma after each badge except the last one in a group
+      const nextSibling = badge.nextElementSibling;
+      const isLastInGroup = !nextSibling || !nextSibling.classList.contains('tech-badge');
+
+      if (!isLastInGroup) {
+        const delimiter = document.createTextNode(', ');
+        badge.parentNode.insertBefore(delimiter, badge.nextSibling);
+      }
+    });
+
+    // Optimize hero section for print
+    const hero = document.querySelector('.VPHero');
+    if (hero) {
+      hero.style.paddingTop = '16px';
+      hero.style.paddingBottom = '24px';
+    }
+
+    const heroName = document.querySelector('.VPHero .name');
+    if (heroName) {
+      heroName.style.fontSize = '40px';
+      heroName.style.lineHeight = '1.2';
+    }
+
+    const heroText = document.querySelector('.VPHero .text');
+    if (heroText) {
+      heroText.style.fontSize = '24px';
+      heroText.style.lineHeight = '1.3';
+    }
+
+    const heroTagline = document.querySelector('.VPHero .tagline');
+    if (heroTagline) {
+      heroTagline.style.fontSize = '15px';
+      heroTagline.style.lineHeight = '1.5';
+    }
+
+    // Style remaining hero buttons - remove borders
+    document.querySelectorAll('.VPHero .actions .VPButton').forEach(btn => {
+      btn.style.fontSize = '13px';
+      btn.style.padding = '6px 14px';
+      btn.style.border = 'none';
+      btn.style.background = 'transparent';
+      btn.style.color = '#000';
+      btn.style.textDecoration = 'underline';
+    });
+  });
+
   console.log('Generating PDF...');
 
   // Generate PDF

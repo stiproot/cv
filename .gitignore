@@ -6,3 +6,6 @@ node_modules/
 # Astro build output
 dist/
 .astro/
+
+# h run plan files
+plan-feature-*.md

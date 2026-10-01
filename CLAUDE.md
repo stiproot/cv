@@ -21,6 +21,10 @@ bun run build:with-pdf  # build then generate:pdf
   `font-size`/`border-radius`/`font-weight`. Use `var(--color-*)`, `var(--text-*)`,
   `var(--radius-*)` from `src/styles/tokens.css`. `bun run lint` fails if you don't
   (via `scripts/check-tokens.ts`).
+- **Link-kind colour rule** — every outbound link carries a `kind` that determines its
+  colour. The eight kind-colour hex values (`#1d4ed8`, `#eef3fe`, `#047857`, `#e8f6f0`,
+  `#c2410c`, `#fdf0e8`, `#6d28d9`, `#f3eefd`) must appear ONLY in `tokens.css`, never
+  hard-coded elsewhere. Use `LinkChip` component for every outbound link.
 - **Every section must read with JavaScript disabled.** The site is a static
   CV, not an interactive app; JavaScript is optional.
 - **Honour `prefers-reduced-motion`.** CSS animations are disabled in the base
@@ -58,8 +62,18 @@ CV content is typed in `src/data/cv.ts` — a single source of truth. The home p
 (`src/pages/index.astro`) renders it. This makes updates atomic: no markdown,
 no stale links, no missed badge.
 
+## Components
+
+- **`LinkChip.astro`** — renders every outbound link in the page with kind-based colouring.
+  Props: `kind` (one of `'repo'`, `'site'`, `'article'`, `'package'`), `label` (link text),
+  `href` (URL), `inverted?` (boolean, makes chip translucent white for the featured Trxy card).
+  Outputs a tinted-background chip with `↗` arrow, min 36px tall. No hard-coded colours.
+
 ## Gotchas
 
+- **Astro 7 needs Node >= 22.12.** `package.json` `engines` declares it and the deploy
+  workflow's `setup-node` must match: on Node 20 `astro check` refuses to run, and a dev machine
+  on a newer Node never shows it.
 - **`@theme static`, not `@theme`.** Tailwind v4 only emits theme variables that
   some generated utility references. Use `@theme static` to force emission of
   custom tokens.

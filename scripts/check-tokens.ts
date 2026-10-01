@@ -53,6 +53,11 @@ const DECLARATIONS: Array<{
 
 const COLOR_RULES: Array<{ name: string; pattern: RegExp; hint: string }> = [
   {
+    name: "kind-color-hex",
+    pattern: /#(?:1d4ed8|eef3fe|047857|e8f6f0|c2410c|fdf0e8|6d28d9|f3eefd)/i,
+    hint: "use var(--color-kind-*) from tokens.css instead of kind-colour hex values",
+  },
+  {
     name: "hex-color",
     pattern: /(?<![\w)])#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b/,
     hint: "use var(--color-*) from tokens.css",

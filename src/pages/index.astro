@@ -1,0 +1,128 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { cvData } from '~/data/cv';
+
+const { hero, sections } = cvData;
+---
+
+<BaseLayout>
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+    <!-- Hero Section -->
+    <section class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-2">{hero.name}</h1>
+      <p class="text-xl md:text-2xl text-muted mb-2">{hero.title}</p>
+      <p class="text-lg text-muted mb-6">{hero.tagline}</p>
+
+      <div class="flex flex-wrap gap-3 mb-8 no-print">
+        {
+          hero.actions.map((action) => (
+            <a
+              href={action.link}
+              class="hero-action px-4 py-2 bg-accent text-fg-inverted rounded hover:bg-accent-hover transition-colors"
+            >
+              {action.text}
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- CV Sections -->
+    {
+      sections.map((section) => (
+        <section class="mb-8">
+          <h2 class="text-3xl font-bold mb-6 mt-8 first:mt-0">{section.heading}</h2>
+
+          {section.intro !== undefined && (
+            <p class="text-muted mb-6">{section.intro}</p>
+          )}
+
+          {section.subsections.map((sub) => (
+            <div class="mb-6">
+              {sub.title !== section.heading && (
+                <h3 class="text-xl font-semibold mb-3">{sub.title}</h3>
+              )}
+
+              {sub.role !== undefined && (
+                <p class="font-semibold mb-1">
+                  Role: {sub.role}
+                  {sub.dates !== undefined && (
+                    <span class="font-normal text-muted"> ({sub.dates})</span>
+                  )}
+                </p>
+              )}
+
+              {sub.dates !== undefined && sub.role === undefined && (
+                <p class="text-muted mb-2">{sub.dates}</p>
+              )}
+
+              {sub.content !== undefined && (
+                <p class="mb-4">{sub.content}</p>
+              )}
+
+              {sub.description !== undefined && (
+                <p class="mb-4">{sub.description}</p>
+              )}
+
+              {sub.subRoles !== undefined && sub.subRoles.length > 0 && (
+                <ul class="mb-4">
+                  {sub.subRoles.map((sr) => (
+                    <li class="mb-1">
+                      <span class="font-semibold">{sr.role}</span>{' '}
+                      <span class="text-muted">({sr.dates})</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {sub.bullets !== undefined && sub.bullets.length > 0 && (
+                <ul class="list-disc pl-5 mb-4">
+                  {sub.bullets.map((bullet) => (
+                    <li class="mb-1">{bullet}</li>
+                  ))}
+                </ul>
+              )}
+
+              {sub.badges !== undefined && sub.badges.length > 0 && (
+                <div class="flex flex-wrap gap-0 mb-2">
+                  {sub.badges.map((badge) => (
+                    <span class="tech-badge">{badge.name}</span>
+                  ))}
+                </div>
+              )}
+
+              {sub.stack !== undefined && sub.stack.length > 0 && (
+                <div class="mb-4">
+                  {sub.stackLabel !== undefined && (
+                    <p class="font-semibold text-sm mb-1">{sub.stackLabel}:</p>
+                  )}
+                  <div class="flex flex-wrap gap-0">
+                    {sub.stack.map((tech) => (
+                      <span class="tech-badge">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {sub.links !== undefined && sub.links.length > 0 && (
+                <div class="flex flex-wrap gap-3 mb-4 items-center">
+                  {sub.linksLabel !== undefined && (
+                    <span class="font-semibold">{sub.linksLabel}:</span>
+                  )}
+                  {sub.links.map((link) => (
+                    <a href={link.url}>{link.label}</a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+      ))
+    }
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-border text-center text-muted">
+      <p>References available upon request</p>
+    </footer>
+  </main>
+</BaseLayout>

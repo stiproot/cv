@@ -1,149 +1,121 @@
-import { chromium } from 'playwright';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import fs from 'fs';
+#!/usr/bin/env bun
+// eslint-disable-next-line unicorn/no-process-exit
+import { chromium } from "playwright";
+import { readFileSync, existsSync, statSync } from "node:fs";
+import { resolve, join, extname } from "node:path";
+import { createServer } from "node:http";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const rootDir = join(__dirname, '..');
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const distDir = resolve(__dirname, "../dist");
+const pdfPath = resolve(distDir, "simon-stipcich-cv.pdf");
 
-async function generatePDF() {
-  console.log('Starting PDF generation...');
+const MIME_TYPES = {
+  ".html": "text/html; charset=utf-8",
+  ".css": "text/css",
+  ".js": "application/javascript",
+  ".mjs": "application/javascript",
+  ".json": "application/json",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".svg": "image/svg+xml",
+  ".ico": "image/x-icon",
+  ".woff": "font/woff",
+  ".woff2": "font/woff2",
+  ".ttf": "font/ttf",
+  ".txt": "text/plain",
+  ".xml": "application/xml",
+};
 
-  // Path to built HTML and output PDF
-  const htmlPath = join(rootDir, '.vitepress', 'dist', 'index.html');
-  const pdfOutputPath = join(rootDir, 'public', 'simon-stipcich-cv.pdf');
+function createStaticServer(dir) {
+  return createServer((req, res) => {
+    let urlPath = (req.url ?? "/").split("?")[0];
 
-  // Ensure public directory exists
-  const publicDir = join(rootDir, 'public');
-  if (!fs.existsSync(publicDir)) {
-    fs.mkdirSync(publicDir, { recursive: true });
-  }
+    let filePath = join(dir, urlPath);
 
-  // Check if built HTML exists
-  if (!fs.existsSync(htmlPath)) {
-    throw new Error('Build output not found. Run "npm run docs:build" first.');
-  }
-
-  console.log(`Loading HTML from: ${htmlPath}`);
-
-  // Launch browser
-  const browser = await chromium.launch({
-    headless: true
-  });
-
-  const context = await browser.newContext();
-  const page = await context.newPage();
-
-  // Navigate to built HTML
-  await page.goto(`file://${htmlPath}`, {
-    waitUntil: 'networkidle'
-  });
-
-  console.log('Page loaded, waiting for fonts...');
-
-  // Wait for fonts to load
-  await page.waitForTimeout(2000);
-
-  console.log('Cleaning up page for PDF...');
-
-  // Clean up the page for PDF generation
-  await page.evaluate(() => {
-    // Remove all navigation elements
-    const selectorsToRemove = [
-      '.VPNavBar',
-      '.VPNav',
-      '.VPSidebar',
-      '.VPDocFooter',
-      '.VPFooter',
-      '.VPLocalNav',
-      '.VPSkipLink',
-      'nav',
-      'header',
-      '[class*="NavBar"]',
-      '[class*="Appearance"]',
-    ];
-
-    selectorsToRemove.forEach(selector => {
-      document.querySelectorAll(selector).forEach(el => el.remove());
-    });
-
-    // Remove Download PDF button from hero actions
-    document.querySelectorAll('a[href*="simon-stipcich-cv.pdf"]').forEach(el => {
-      el.remove();
-    });
-
-    // Fix tech badge spacing - add comma and space after each badge
-    document.querySelectorAll('.tech-badge').forEach((badge, index, badges) => {
-      // Add comma after each badge except the last one in a group
-      const nextSibling = badge.nextElementSibling;
-      const isLastInGroup = !nextSibling || !nextSibling.classList.contains('tech-badge');
-
-      if (!isLastInGroup) {
-        const delimiter = document.createTextNode(', ');
-        badge.parentNode.insertBefore(delimiter, badge.nextSibling);
-      }
-    });
-
-    // Optimize hero section for print
-    const hero = document.querySelector('.VPHero');
-    if (hero) {
-      hero.style.paddingTop = '16px';
-      hero.style.paddingBottom = '24px';
+    if (existsSync(filePath) && statSync(filePath).isDirectory()) {
+      filePath = join(filePath, "index.html");
     }
 
-    const heroName = document.querySelector('.VPHero .name');
-    if (heroName) {
-      heroName.style.fontSize = '40px';
-      heroName.style.lineHeight = '1.2';
+    if (!existsSync(filePath)) {
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Not found");
+      return;
     }
 
-    const heroText = document.querySelector('.VPHero .text');
-    if (heroText) {
-      heroText.style.fontSize = '24px';
-      heroText.style.lineHeight = '1.3';
-    }
+    const ext = extname(filePath).toLowerCase();
+    const contentType = MIME_TYPES[ext] ?? "application/octet-stream";
 
-    const heroTagline = document.querySelector('.VPHero .tagline');
-    if (heroTagline) {
-      heroTagline.style.fontSize = '15px';
-      heroTagline.style.lineHeight = '1.5';
+    try {
+      const content = readFileSync(filePath);
+      res.writeHead(200, { "Content-Type": contentType });
+      res.end(content);
+    } catch {
+      res.writeHead(500, { "Content-Type": "text/plain" });
+      res.end("Server error");
     }
-
-    // Style remaining hero buttons - remove borders
-    document.querySelectorAll('.VPHero .actions .VPButton').forEach(btn => {
-      btn.style.fontSize = '13px';
-      btn.style.padding = '6px 14px';
-      btn.style.border = 'none';
-      btn.style.background = 'transparent';
-      btn.style.color = '#000';
-      btn.style.textDecoration = 'underline';
-    });
   });
-
-  console.log('Generating PDF...');
-
-  // Generate PDF
-  await page.pdf({
-    path: pdfOutputPath,
-    format: 'A4',
-    printBackground: true,  // Include background colors/images
-    margin: {
-      top: '20mm',
-      right: '15mm',
-      bottom: '20mm',
-      left: '15mm'
-    },
-    preferCSSPageSize: false
-  });
-
-  await browser.close();
-
-  console.log(`✓ PDF generated successfully: ${pdfOutputPath}`);
-  console.log('→ Run "npm run docs:build" again to include PDF in dist/');
 }
 
-generatePDF().catch(err => {
-  console.error('PDF generation failed:', err);
-  process.exit(1);
+// eslint-disable-next-line no-console
+console.log("Starting PDF generation...");
+
+const server = createStaticServer(distDir);
+
+await new Promise((resolvePromise) => {
+  server.listen(0, "127.0.0.1", resolvePromise);
 });
+
+const addr = server.address();
+const port = addr.port;
+
+// eslint-disable-next-line no-console
+console.log(`Serving dist/ at http://localhost:${port}/`);
+
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage();
+
+await page.goto(`http://localhost:${port}/`, {
+  waitUntil: "networkidle",
+});
+
+// eslint-disable-next-line no-console
+console.log("Page loaded, emulating print media...");
+
+await page.emulateMedia({ media: "print", colorScheme: "light" });
+
+await page.waitForLoadState("networkidle");
+
+// Remove elements with no-print class to ensure they don't appear in PDF text extraction
+await page.evaluate(() => {
+  const noPrintElements = document.querySelectorAll(".no-print");
+  noPrintElements.forEach((el) => {
+    el.remove();
+  });
+});
+
+// eslint-disable-next-line no-console
+console.log("Generating PDF...");
+
+await page.pdf({
+  path: pdfPath,
+  format: "A4",
+  margin: {
+    top: "20mm",
+    bottom: "20mm",
+    left: "15mm",
+    right: "15mm",
+  },
+  printBackground: true,
+});
+
+await browser.close();
+server.close();
+
+const fileSize = readFileSync(pdfPath).byteLength;
+// eslint-disable-next-line no-console
+console.log(`PDF generated successfully: ${pdfPath}`);
+// eslint-disable-next-line no-console
+console.log(`File size: ${fileSize} bytes`);

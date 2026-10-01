@@ -1,18 +1,29 @@
 {
-  "name": "simon-stipcich-portfolio",
+  "name": "simon-stipcich-cv",
   "version": "1.0.0",
-  "description": "Simon Stipcich - Software Developer Portfolio",
+  "description": "Simon Stipcich - Software Developer CV",
   "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview --port 5175",
-    "generate:pdf": "node scripts/generate-pdf.mjs",
-    "build:with-pdf": "npm run docs:build && npm run generate:pdf && npm run docs:build"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "type-check": "astro check",
+    "lint": "oxlint . && bunx oxfmt --check . && bun scripts/check-tokens.ts",
+    "format": "bunx oxfmt .",
+    "generate:pdf": "bun scripts/generate-pdf.mjs",
+    "build:with-pdf": "bun run build && bun run generate:pdf",
+    "clean": "rm -rf dist *.tsbuildinfo .astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.5",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0",
-    "playwright": "^1.48.0"
-  },
-  "private": true
+    "@astrojs/check": "^0.9.10",
+    "oxlint": "^1.86.0",
+    "playwright": "^1.58.2",
+    "typescript": "~5.9.2"
+  }
 }

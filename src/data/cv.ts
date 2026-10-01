@@ -165,8 +165,7 @@ const sections: Section[] = [
 
   {
     heading: "Personal Projects",
-    intro:
-      "I enjoy developing productivity tools and frameworks. Here are some of my favorites:",
+    intro: "I enjoy developing productivity tools and frameworks. Here are some of my favorites:",
     subsections: [
       {
         title: "Trxy",
@@ -198,16 +197,7 @@ const sections: Section[] = [
         title: "Lxi",
         description:
           "An AI-powered repository intelligence and collaboration platform that enables semantic code search and natural language querying of codebases.",
-        stack: [
-          ".NET",
-          "Python",
-          "FastAPI",
-          "Dapr",
-          "MongoDB",
-          "ChromaDB",
-          "React",
-          "TypeScript",
-        ],
+        stack: [".NET", "Python", "FastAPI", "Dapr", "MongoDB", "ChromaDB", "React", "TypeScript"],
         links: [{ label: "GitHub", url: "https://github.com/stiproot/lxi" }],
       },
       {
@@ -245,12 +235,7 @@ const sections: Section[] = [
           "Multi-initiative dashboard support with dynamic layouts",
           "Architecture: Provider-Processor pattern with dependency injection, workflow orchestration for complex multi-step operations",
         ],
-        stack: [
-          ".NET 8.0",
-          "Azure DevOps REST API",
-          "Xo.TaskTree",
-          "Xo.Algo.RectangleCluster",
-        ],
+        stack: [".NET 8.0", "Azure DevOps REST API", "Xo.TaskTree", "Xo.Algo.RectangleCluster"],
         links: [
           { label: "GitHub", url: "https://github.com/stiproot/xo-azdo-cli" },
           { label: "NuGet", url: "https://www.nuget.org/packages/Xo.AzDO.Engine" },

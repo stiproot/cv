@@ -189,8 +189,8 @@ const sections: Section[] = [
         links: [
           {
             kind: "site",
-            label: "Website: stiproot.github.io/trxy-v2",
-            href: "https://stiproot.github.io/trxy-v2/",
+            label: "Website: trxy-site.web.app",
+            href: "https://trxy-site.web.app/",
           },
           {
             kind: "site",

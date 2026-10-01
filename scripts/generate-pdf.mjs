@@ -3,8 +3,11 @@
 import { chromium } from "playwright";
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-const distDir = resolve(import.meta.dir, "../dist");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const distDir = resolve(__dirname, "../dist");
 const htmlPath = resolve(distDir, "index.html");
 const pdfPath = resolve(distDir, "simon-stipcich-cv.pdf");
 
@@ -13,16 +16,27 @@ console.log("Starting PDF generation...");
 // eslint-disable-next-line no-console
 console.log(`Loading HTML from: ${htmlPath}`);
 
-const html = readFileSync(htmlPath, "utf-8");
-
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage();
 
-// Set content with CSS for print
-await page.setContent(html, { waitUntil: "networkidle" });
+// Go to file URL with print media emulation
+await page.goto(`file://${htmlPath}`, {
+  waitUntil: "networkidle",
+});
+
+// Emulate print media so @media print CSS is applied
+await page.emulateMedia({ media: "print", colorScheme: "light" });
 
 // Wait for any fonts
 await page.waitForLoadState("networkidle");
+
+// Remove elements with no-print class to ensure they don't appear in PDF text extraction
+await page.evaluate(() => {
+  const noPrintElements = document.querySelectorAll(".no-print");
+  noPrintElements.forEach((el) => {
+    el.remove();
+  });
+});
 
 // eslint-disable-next-line no-console
 console.log("Generating PDF...");

@@ -404,9 +404,9 @@ const sections: Section[] = [
       {
         title: "Contact",
         links: [
-          { kind: "site", label: "📧 Email", href: "mailto:code.stip.si@gmail.com" },
-          { kind: "repo", label: "💻 GitHub", href: "https://github.com/stiproot" },
-          { kind: "site", label: "💼 LinkedIn", href: "https://www.linkedin.com/in/stiproot" },
+          { kind: "site", label: "Email", href: "mailto:code.stip.si@gmail.com" },
+          { kind: "repo", label: "GitHub", href: "https://github.com/stiproot" },
+          { kind: "site", label: "LinkedIn", href: "https://www.linkedin.com/in/stiproot" },
         ],
       },
     ],

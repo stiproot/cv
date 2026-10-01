@@ -34,7 +34,7 @@ const skillGroups = skillsSection?.subsections || [];
 ---
 
 <BaseLayout>
-  <main class="min-h-screen" style="background-color: var(--color-page);">
+  <main class="min-h-screen">
     <div class="max-w-6xl mx-auto px-4 py-8 md:py-12 lg:px-6">
       <!-- Header (Hero + Featured Card) -->
       <div class="header-grid grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -101,7 +101,7 @@ const skillGroups = skillsSection?.subsections || [];
       {
         personalProjectsSection && (
           <section class="mb-12">
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
               <h2 class="text-3xl font-bold" style="color: var(--color-text);">
                 Personal Projects
               </h2>
@@ -134,7 +134,7 @@ const skillGroups = skillsSection?.subsections || [];
               {mandyProject && (
                 <div class="card p-8">
                   <p class="font-mono text-sm font-medium mb-2" style="color: var(--color-text-secondary);">
-                    {mandyProject.role}
+                    Role: {mandyProject.role}
                   </p>
                   <h3 class="text-xl font-bold mb-3" style="color: var(--color-text);">
                     {mandyProject.title}
@@ -155,7 +155,7 @@ const skillGroups = skillsSection?.subsections || [];
               {apcProject && (
                 <div class="card p-8">
                   <p class="font-mono text-sm font-medium mb-2" style="color: var(--color-text-secondary);">
-                    {apcProject.role}
+                    Role: {apcProject.role}
                   </p>
                   <h3 class="text-xl font-bold mb-3" style="color: var(--color-text);">
                     {apcProject.title}
@@ -167,7 +167,7 @@ const skillGroups = skillsSection?.subsections || [];
               {campaignProject && (
                 <div class="card p-8">
                   <p class="font-mono text-sm font-medium mb-2" style="color: var(--color-text-secondary);">
-                    {campaignProject.role}
+                    Role: {campaignProject.role}
                   </p>
                   <h3 class="text-xl font-bold mb-3" style="color: var(--color-text);">
                     {campaignProject.title}
@@ -258,6 +258,11 @@ const skillGroups = skillsSection?.subsections || [];
                         </li>
                       ))}
                     </ul>
+                  )}
+                  {employment.stack && employment.stack.length > 0 && (
+                    <p class="text-sm mt-2" style="color: var(--color-text-secondary);">
+                      {employment.stackLabel ?? "Stack"}: {employment.stack.join(", ")}
+                    </p>
                   )}
                 </div>
               ))}
@@ -351,7 +356,15 @@ const skillGroups = skillsSection?.subsections || [];
                 </h3>
                 <div class="flex flex-wrap gap-3">
                   {contactSection.subsections[0].links?.map((link) => (
-                    <LinkChip kind={link.kind} label={link.label} href={link.href} />
+                    <a
+                      href={link.href}
+                      class="inline-flex items-center h-11 px-5 rounded-xl text-sm font-bold"
+                      style={link.kind === "repo"
+                        ? "background: var(--color-kind-repo-tint); color: var(--color-kind-repo);"
+                        : "background: var(--color-btn-neutral); color: var(--color-text);"}
+                    >
+                      {link.label}
+                    </a>
                   ))}
                 </div>
               </div>

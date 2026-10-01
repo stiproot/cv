@@ -45,6 +45,16 @@ const colorVar = `var(--color-kind-${kind})`;
     color: var(--color-white);
   }
 
+  /* Print: a chip is just its label — no fill, readable ink, even on the featured card. */
+  @media print {
+    a,
+    a[data-inverted="true"] {
+      background-color: transparent;
+      color: var(--color-text);
+      padding-inline: 0;
+    }
+  }
+
   a:hover {
     text-decoration: none;
     opacity: 0.8;

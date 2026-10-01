@@ -50,9 +50,11 @@ a:hover {
 }
 
 @media print {
-  body {
-    background-color: white;
-    color: black;
+  html,
+  body,
+  main {
+    background-color: var(--color-white);
+    color: var(--color-text);
   }
 
   .card {

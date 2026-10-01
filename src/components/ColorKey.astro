@@ -1,0 +1,50 @@
+---
+---
+
+<div class="color-key">
+  <div class="key-item">
+    <div class="key-color" style="background-color: var(--color-kind-repo);"></div>
+    <span class="key-label">repo</span>
+  </div>
+  <div class="key-item">
+    <div class="key-color" style="background-color: var(--color-kind-site);"></div>
+    <span class="key-label">live</span>
+  </div>
+  <div class="key-item">
+    <div class="key-color" style="background-color: var(--color-kind-article);"></div>
+    <span class="key-label">article / video</span>
+  </div>
+  <div class="key-item">
+    <div class="key-color" style="background-color: var(--color-kind-package);"></div>
+    <span class="key-label">package</span>
+  </div>
+</div>
+
+<style>
+  .color-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .key-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .key-color {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-xs);
+  }
+
+  .key-label {
+    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
+  }
+</style>

@@ -71,6 +71,9 @@ no stale links, no missed badge.
 
 ## Gotchas
 
+- **Astro 7 needs Node >= 22.12.** `package.json` `engines` declares it and the deploy
+  workflow's `setup-node` must match: on Node 20 `astro check` refuses to run, and a dev machine
+  on a newer Node never shows it.
 - **`@theme static`, not `@theme`.** Tailwind v4 only emits theme variables that
   some generated utility references. Use `@theme static` to force emission of
   custom tokens.

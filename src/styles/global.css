@@ -26,6 +26,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.hero-action {
+  color: var(--color-fg-inverted) !important;
+}
+
 .tech-badge {
   display: inline-block;
   background-color: var(--color-badge-bg);
@@ -38,13 +42,13 @@ a:hover {
   margin-left: 0;
 }
 
-/* Separate tech badges in print with commas */
-.tech-badge:not(:last-child)::after {
-  content: ",";
-  margin-right: var(--space-2);
-}
-
 @media print {
+  /* Separate tech badges in print with commas */
+  .tech-badge:not(:last-child)::after {
+    content: ",";
+    margin-right: var(--space-2);
+  }
+
   html {
     margin: var(--print-margin-top) var(--print-margin-right) var(--print-margin-bottom)
       var(--print-margin-left);

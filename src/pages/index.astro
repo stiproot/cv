@@ -13,12 +13,12 @@ const { hero, sections } = cvData;
       <p class="text-xl md:text-2xl text-muted mb-2">{hero.title}</p>
       <p class="text-lg text-muted mb-6">{hero.tagline}</p>
 
-      <div class="flex flex-wrap gap-4 mb-8">
+      <div class="flex flex-wrap gap-3 mb-8 no-print">
         {
           hero.actions.map((action) => (
             <a
               href={action.link}
-              class="px-4 py-2 bg-accent text-white rounded hover:bg-accent-hover transition-colors no-print"
+              class="hero-action px-4 py-2 bg-accent text-fg-inverted rounded hover:bg-accent-hover transition-colors"
             >
               {action.text}
             </a>
@@ -39,7 +39,22 @@ const { hero, sections } = cvData;
 
           {section.subsections.map((sub) => (
             <div class="mb-6">
-              <h3 class="text-xl font-semibold mb-3">{sub.title}</h3>
+              {sub.title !== section.heading && (
+                <h3 class="text-xl font-semibold mb-3">{sub.title}</h3>
+              )}
+
+              {sub.role !== undefined && (
+                <p class="font-semibold mb-1">
+                  Role: {sub.role}
+                  {sub.dates !== undefined && (
+                    <span class="font-normal text-muted"> ({sub.dates})</span>
+                  )}
+                </p>
+              )}
+
+              {sub.dates !== undefined && sub.role === undefined && (
+                <p class="text-muted mb-2">{sub.dates}</p>
+              )}
 
               {sub.content !== undefined && (
                 <p class="mb-4">{sub.content}</p>
@@ -47,15 +62,6 @@ const { hero, sections } = cvData;
 
               {sub.description !== undefined && (
                 <p class="mb-4">{sub.description}</p>
-              )}
-
-              {sub.role !== undefined && (
-                <p class="font-semibold mb-1">
-                  {sub.role}
-                  {sub.dates !== undefined && (
-                    <span class="font-normal text-muted"> ({sub.dates})</span>
-                  )}
-                </p>
               )}
 
               {sub.subRoles !== undefined && sub.subRoles.length > 0 && (
@@ -69,10 +75,6 @@ const { hero, sections } = cvData;
                 </ul>
               )}
 
-              {sub.dates !== undefined && sub.role === undefined && (
-                <p class="text-muted mb-2">{sub.dates}</p>
-              )}
-
               {sub.bullets !== undefined && sub.bullets.length > 0 && (
                 <ul class="list-disc pl-5 mb-4">
                   {sub.bullets.map((bullet) => (
@@ -82,7 +84,7 @@ const { hero, sections } = cvData;
               )}
 
               {sub.badges !== undefined && sub.badges.length > 0 && (
-                <div class="flex flex-wrap gap-0">
+                <div class="flex flex-wrap gap-0 mb-2">
                   {sub.badges.map((badge) => (
                     <span class="tech-badge">{badge.name}</span>
                   ))}
@@ -90,15 +92,23 @@ const { hero, sections } = cvData;
               )}
 
               {sub.stack !== undefined && sub.stack.length > 0 && (
-                <div class="flex flex-wrap gap-0 mb-4">
-                  {sub.stack.map((tech) => (
-                    <span class="tech-badge">{tech}</span>
-                  ))}
+                <div class="mb-4">
+                  {sub.stackLabel !== undefined && (
+                    <p class="font-semibold text-sm mb-1">{sub.stackLabel}:</p>
+                  )}
+                  <div class="flex flex-wrap gap-0">
+                    {sub.stack.map((tech) => (
+                      <span class="tech-badge">{tech}</span>
+                    ))}
+                  </div>
                 </div>
               )}
 
               {sub.links !== undefined && sub.links.length > 0 && (
-                <div class="flex flex-wrap gap-4 mb-4">
+                <div class="flex flex-wrap gap-3 mb-4 items-center">
+                  {sub.linksLabel !== undefined && (
+                    <span class="font-semibold">{sub.linksLabel}:</span>
+                  )}
                   {sub.links.map((link) => (
                     <a href={link.url}>{link.label}</a>
                   ))}

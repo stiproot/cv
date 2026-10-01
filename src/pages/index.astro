@@ -1,0 +1,73 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { cvData } from '~/data/cv';
+
+const { hero, sections } = cvData;
+---
+
+<BaseLayout>
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+    <!-- Hero Section -->
+    <section class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-2">{hero.name}</h1>
+      <p class="text-xl md:text-2xl text-gray-600 mb-2">{hero.title}</p>
+      <p class="text-lg text-gray-700 mb-6">{hero.tagline}</p>
+
+      <div class="flex flex-wrap gap-4 mb-8">
+        {
+          hero.actions.map((action) => (
+            <a
+              href={action.link}
+              class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors no-print"
+            >
+              {action.text}
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- CV Sections -->
+    {
+      sections.map((section) => (
+        <section class="mb-8">
+          <h2 class="text-3xl font-bold mb-6 mt-8 first:mt-0">{section.heading}</h2>
+
+          {section.subsections.map((subsection) => (
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold mb-3">{subsection.title}</h3>
+
+              {subsection.content && (
+                <p class="text-gray-700 mb-4" set:html={subsection.content} />
+              )}
+
+              {subsection.badges && (
+                <div class="flex flex-wrap gap-0">
+                  {subsection.badges.map((badge) => (
+                    <span class="tech-badge">{badge.name}</span>
+                  ))}
+                </div>
+              )}
+
+              {subsection.details && (
+                <div class="text-gray-700 mb-4">
+                  {subsection.details.map((detail) => (
+                    <p
+                      set:html={detail}
+                      class="mb-2"
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+      ))
+    }
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-gray-300 text-center text-gray-600">
+      <p>References available upon request</p>
+    </footer>
+  </main>
+</BaseLayout>

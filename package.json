@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "type-check": "astro check",
-    "lint": "bunx oxlint . && bunx oxfmt --check . && bun scripts/check-tokens.ts",
+    "lint": "oxlint . && bunx oxfmt --check . && bun scripts/check-tokens.ts",
     "format": "bunx oxfmt .",
     "generate:pdf": "bun scripts/generate-pdf.mjs",
     "build:with-pdf": "bun run build && bun run generate:pdf",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "oxlint": "^1.86.0",
     "playwright": "^1.58.2",
     "typescript": "~5.9.2"
   }

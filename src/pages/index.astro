@@ -10,15 +10,15 @@ const { hero, sections } = cvData;
     <!-- Hero Section -->
     <section class="mb-12">
       <h1 class="text-4xl md:text-5xl font-bold mb-2">{hero.name}</h1>
-      <p class="text-xl md:text-2xl text-gray-600 mb-2">{hero.title}</p>
-      <p class="text-lg text-gray-700 mb-6">{hero.tagline}</p>
+      <p class="text-xl md:text-2xl text-muted mb-2">{hero.title}</p>
+      <p class="text-lg text-muted mb-6">{hero.tagline}</p>
 
       <div class="flex flex-wrap gap-4 mb-8">
         {
           hero.actions.map((action) => (
             <a
               href={action.link}
-              class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors no-print"
+              class="px-4 py-2 bg-accent text-white rounded hover:bg-accent-hover transition-colors no-print"
             >
               {action.text}
             </a>
@@ -33,43 +33,85 @@ const { hero, sections } = cvData;
         <section class="mb-8">
           <h2 class="text-3xl font-bold mb-6 mt-8 first:mt-0">{section.heading}</h2>
 
-          {section.subsections.map((subsection) => {
-            const sub = subsection as any;
-            return (
-              <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-3">{sub.title}</h3>
+          {section.intro !== undefined && (
+            <p class="text-muted mb-6">{section.intro}</p>
+          )}
 
-                {typeof sub.content === 'string' && (
-                  <p class="text-gray-700 mb-4" set:html={sub.content} />
-                )}
+          {section.subsections.map((sub) => (
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold mb-3">{sub.title}</h3>
 
-                {Array.isArray(sub.badges) && (
-                  <div class="flex flex-wrap gap-0">
-                    {sub.badges.map((badge: any) => (
-                      <span class="tech-badge">{badge.name}</span>
-                    ))}
-                  </div>
-                )}
+              {sub.content !== undefined && (
+                <p class="mb-4">{sub.content}</p>
+              )}
 
-                {Array.isArray(sub.details) && (
-                  <div class="text-gray-700 mb-4">
-                    {sub.details.map((detail: string) => (
-                      <p
-                        set:html={detail}
-                        class="mb-2"
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+              {sub.description !== undefined && (
+                <p class="mb-4">{sub.description}</p>
+              )}
+
+              {sub.role !== undefined && (
+                <p class="font-semibold mb-1">
+                  {sub.role}
+                  {sub.dates !== undefined && (
+                    <span class="font-normal text-muted"> ({sub.dates})</span>
+                  )}
+                </p>
+              )}
+
+              {sub.subRoles !== undefined && sub.subRoles.length > 0 && (
+                <ul class="mb-4">
+                  {sub.subRoles.map((sr) => (
+                    <li class="mb-1">
+                      <span class="font-semibold">{sr.role}</span>{' '}
+                      <span class="text-muted">({sr.dates})</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {sub.dates !== undefined && sub.role === undefined && (
+                <p class="text-muted mb-2">{sub.dates}</p>
+              )}
+
+              {sub.bullets !== undefined && sub.bullets.length > 0 && (
+                <ul class="list-disc pl-5 mb-4">
+                  {sub.bullets.map((bullet) => (
+                    <li class="mb-1">{bullet}</li>
+                  ))}
+                </ul>
+              )}
+
+              {sub.badges !== undefined && sub.badges.length > 0 && (
+                <div class="flex flex-wrap gap-0">
+                  {sub.badges.map((badge) => (
+                    <span class="tech-badge">{badge.name}</span>
+                  ))}
+                </div>
+              )}
+
+              {sub.stack !== undefined && sub.stack.length > 0 && (
+                <div class="flex flex-wrap gap-0 mb-4">
+                  {sub.stack.map((tech) => (
+                    <span class="tech-badge">{tech}</span>
+                  ))}
+                </div>
+              )}
+
+              {sub.links !== undefined && sub.links.length > 0 && (
+                <div class="flex flex-wrap gap-4 mb-4">
+                  {sub.links.map((link) => (
+                    <a href={link.url}>{link.label}</a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </section>
       ))
     }
 
     <!-- Footer -->
-    <footer class="mt-16 pt-8 border-t border-gray-300 text-center text-gray-600">
+    <footer class="mt-16 pt-8 border-t border-border text-center text-muted">
       <p>References available upon request</p>
     </footer>
   </main>

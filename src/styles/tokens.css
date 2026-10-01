@@ -66,3 +66,14 @@
     --color-badge-text: #cbd5e1;
   }
 }
+
+@theme static {
+  --color-bg: #ffffff;
+  --color-fg: #1a1a1a;
+  --color-muted: #666666;
+  --color-border: #e5e5e5;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-badge-bg: #f3f4f6;
+  --color-badge-text: #374151;
+}

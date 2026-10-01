@@ -62,6 +62,12 @@ const COLOR_RULES: Array<{ name: string; pattern: RegExp; hint: string }> = [
     pattern: /\b(?:rgba?|hsla?)\(\s*\d/,
     hint: "use var(--color-*) from tokens.css",
   },
+  {
+    name: "tailwind-default-palette",
+    pattern:
+      /\b(?:text|bg|border|ring|from|to|via)-(?:gray|slate|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d{2,3}\b/,
+    hint: "use token-based utilities (e.g. text-muted, bg-accent) instead of Tailwind default palette",
+  },
 ];
 
 const ALLOWED_LINE = [

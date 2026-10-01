@@ -3,7 +3,6 @@
 # Node.js
 node_modules/
 
-# VitePress
-.vitepress/cache/
-.vitepress/dist/
-.temp/
+# Astro build output
+dist/
+.astro/

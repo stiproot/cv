@@ -1,0 +1,52 @@
+---
+import type { LinkKind } from "../data/cv";
+
+interface Props {
+  kind: LinkKind;
+  label: string;
+  href: string;
+  inverted?: boolean;
+}
+
+const { kind, label, href, inverted = false } = Astro.props;
+
+const colorVarTint = `var(--color-kind-${kind}-tint)`;
+const colorVar = `var(--color-kind-${kind})`;
+---
+
+<a
+  href={href}
+  class="link-chip"
+  data-inverted={inverted}
+  style={`--chip-bg: ${colorVarTint}; --chip-color: ${colorVar};`}
+>
+  <span>{label}</span>
+  <span>↗</span>
+</a>
+
+<style>
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 36px;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: opacity 0.2s;
+    background-color: var(--chip-bg);
+    color: var(--chip-color);
+  }
+
+  a[data-inverted="true"] {
+    background-color: var(--color-white-transparent);
+    color: var(--color-white);
+  }
+
+  a:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+</style>

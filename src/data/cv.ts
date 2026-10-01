@@ -1,10 +1,13 @@
-export interface TechBadge {
-  name: string;
-}
+export type LinkKind = "repo" | "site" | "article" | "package";
 
 export interface Link {
+  kind: LinkKind;
   label: string;
-  url: string;
+  href: string;
+}
+
+export interface TechBadge {
+  name: string;
 }
 
 export interface SubRole {
@@ -31,6 +34,14 @@ export interface Section {
   heading: string;
   intro?: string;
   subsections: Subsection[];
+}
+
+export interface ArticleEntry {
+  type: "article" | "video";
+  title: string;
+  href: string;
+  source: string;
+  summary: string;
 }
 
 const sections: Section[] = [
@@ -177,18 +188,29 @@ const sections: Section[] = [
         stackLabel: "Stack",
         links: [
           {
+            kind: "site",
             label: "Website: stiproot.github.io/trxy-v2",
-            url: "https://stiproot.github.io/trxy-v2/",
+            href: "https://stiproot.github.io/trxy-v2/",
           },
-          { label: "Web App: trxy-web.web.app", url: "https://trxy-web.web.app/" },
-          { label: "iOS: App Store", url: "https://apps.apple.com/us/app/trxy/id6753019236" },
           {
+            kind: "site",
+            label: "Web App: trxy-web.web.app",
+            href: "https://trxy-web.web.app/",
+          },
+          {
+            kind: "site",
+            label: "iOS: App Store",
+            href: "https://apps.apple.com/us/app/trxy/id6753019236",
+          },
+          {
+            kind: "site",
             label: "Android: Google Play",
-            url: "https://play.google.com/store/apps/details?id=com.trxy.skateboarding",
+            href: "https://play.google.com/store/apps/details?id=com.trxy.skateboarding",
           },
           {
+            kind: "site",
             label: "Instagram: @trxy.skateboarding",
-            url: "https://instagram.com/trxy.skateboarding",
+            href: "https://instagram.com/trxy.skateboarding",
           },
         ],
       },
@@ -199,8 +221,12 @@ const sections: Section[] = [
         stack: [".NET"],
         stackLabel: "Stack",
         links: [
-          { label: "GitHub", url: "https://github.com/stiproot/xo-tasktree" },
-          { label: "NuGet", url: "https://www.nuget.org/packages/Xo.TaskTree" },
+          { kind: "repo", label: "GitHub", href: "https://github.com/stiproot/xo-tasktree" },
+          {
+            kind: "package",
+            label: "NuGet",
+            href: "https://www.nuget.org/packages/Xo.TaskTree",
+          },
         ],
         linksLabel: "Links",
       },
@@ -210,7 +236,13 @@ const sections: Section[] = [
           "An AI-powered repository intelligence and collaboration platform that enables semantic code search and natural language querying of codebases.",
         stack: [".NET", "Python", "FastAPI", "Dapr", "MongoDB", "ChromaDB", "React", "TypeScript"],
         stackLabel: "Stack",
-        links: [{ label: "github.com/stiproot/lxi", url: "https://github.com/stiproot/lxi" }],
+        links: [
+          {
+            kind: "repo",
+            label: "github.com/stiproot/lxi",
+            href: "https://github.com/stiproot/lxi",
+          },
+        ],
         linksLabel: "Link",
       },
       {
@@ -229,7 +261,13 @@ const sections: Section[] = [
           "Quasar Framework",
         ],
         stackLabel: "Stack",
-        links: [{ label: "github.com/stiproot/mndy", url: "https://github.com/stiproot/mndy" }],
+        links: [
+          {
+            kind: "repo",
+            label: "github.com/stiproot/mndy",
+            href: "https://github.com/stiproot/mndy",
+          },
+        ],
         linksLabel: "Link",
       },
       {
@@ -238,7 +276,11 @@ const sections: Section[] = [
         stack: [".NET", "SemanticKernel", "Dapr"],
         stackLabel: "Stack",
         links: [
-          { label: "github.com/stiproot/f4-lang", url: "https://github.com/stiproot/f4-lang" },
+          {
+            kind: "repo",
+            label: "github.com/stiproot/f4-lang",
+            href: "https://github.com/stiproot/f4-lang",
+          },
         ],
         linksLabel: "Link",
       },
@@ -258,8 +300,12 @@ const sections: Section[] = [
         stack: [".NET 8.0", "Azure DevOps REST API", "Xo.TaskTree", "Xo.Algo.RectangleCluster"],
         stackLabel: "Stack",
         links: [
-          { label: "GitHub", url: "https://github.com/stiproot/xo-azdo-cli" },
-          { label: "NuGet", url: "https://www.nuget.org/packages/Xo.AzDO.Engine" },
+          { kind: "repo", label: "GitHub", href: "https://github.com/stiproot/xo-azdo-cli" },
+          {
+            kind: "package",
+            label: "NuGet",
+            href: "https://www.nuget.org/packages/Xo.AzDO.Engine",
+          },
         ],
         linksLabel: "Links",
       },
@@ -271,8 +317,9 @@ const sections: Section[] = [
         stackLabel: "Stack",
         links: [
           {
+            kind: "repo",
             label: "github.com/stiproot/langchain-lab/tree/main/graphs/codegen",
-            url: "https://github.com/stiproot/langchain-lab/tree/main/graphs/codegen",
+            href: "https://github.com/stiproot/langchain-lab/tree/main/graphs/codegen",
           },
         ],
         linksLabel: "Link",
@@ -283,7 +330,13 @@ const sections: Section[] = [
           'Real-estate property web app for people to provide "micro services" in renovating their homes.',
         stack: ["Angular", ".NET", "MySQL", "Zoom", "Node.js"],
         stackLabel: "Stack",
-        links: [{ label: "github.com/stiproot/asq", url: "https://github.com/stiproot/asq" }],
+        links: [
+          {
+            kind: "repo",
+            label: "github.com/stiproot/asq",
+            href: "https://github.com/stiproot/asq",
+          },
+        ],
         linksLabel: "Link",
       },
     ],
@@ -351,9 +404,9 @@ const sections: Section[] = [
       {
         title: "Contact",
         links: [
-          { label: "📧 Email", url: "mailto:code.stip.si@gmail.com" },
-          { label: "💻 GitHub", url: "https://github.com/stiproot" },
-          { label: "💼 LinkedIn", url: "https://www.linkedin.com/in/stiproot" },
+          { kind: "site", label: "📧 Email", href: "mailto:code.stip.si@gmail.com" },
+          { kind: "repo", label: "💻 GitHub", href: "https://github.com/stiproot" },
+          { kind: "site", label: "💼 LinkedIn", href: "https://www.linkedin.com/in/stiproot" },
         ],
       },
     ],
@@ -367,11 +420,28 @@ export const cvData = {
     tagline:
       "Mathematics & Physics background. Building productivity tools and scalable solutions.",
     actions: [
-      { text: "View GitHub", link: "https://github.com/stiproot" },
-      { text: "LinkedIn Profile", link: "https://www.linkedin.com/in/stiproot" },
-      { text: "Download PDF", link: "/simon-stipcich-cv.pdf" },
-      { text: "Contact", link: "mailto:code.stip.si@gmail.com" },
+      {
+        label: "GitHub",
+        href: "https://github.com/stiproot",
+        variant: "repo" as const,
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/stiproot",
+        variant: "neutral" as const,
+      },
+      {
+        label: "Download CV",
+        href: "/simon-stipcich-cv.pdf",
+        variant: "dark" as const,
+      },
+      {
+        label: "Email",
+        href: "mailto:code.stip.si@gmail.com",
+        variant: "neutral" as const,
+      },
     ],
   },
   sections,
+  articles: [],
 };

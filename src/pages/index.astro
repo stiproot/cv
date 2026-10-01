@@ -1,128 +1,372 @@
 ---
-import BaseLayout from '~/layouts/BaseLayout.astro';
-import { cvData } from '~/data/cv';
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import LinkChip from "~/components/LinkChip.astro";
+import ColorKey from "~/components/ColorKey.astro";
+import ProjectCard from "~/components/ProjectCard.astro";
+import ArticleCard from "~/components/ArticleCard.astro";
+import FeaturedCard from "~/components/FeaturedCard.astro";
+import { cvData } from "~/data/cv";
 
-const { hero, sections } = cvData;
+const { hero, sections, articles } = cvData;
+
+const personalProjectsSection = sections.find((s) => s.heading === "Personal Projects");
+const achievementsSection = sections.find((s) => s.heading === "Key Achievements");
+const skillsSection = sections.find((s) => s.heading === "Key Skills");
+const employmentSection = sections.find((s) => s.heading === "Employment Experience");
+const educationSection = sections.find((s) => s.heading === "Education");
+const interestsSection = sections.find((s) => s.heading === "Interests");
+const contactSection = sections.find((s) => s.heading === "Contact");
+const profileSection = sections.find((s) => s.heading === "Profile");
+
+const trxyProject = personalProjectsSection?.subsections.find((p) => p.title === "Trxy");
+const otherProjects = personalProjectsSection?.subsections.filter((p) => p.title !== "Trxy") || [];
+
+const mandyProject = achievementsSection?.subsections.find((p) =>
+  p.title.includes('Project "Mandy"')
+);
+const apcProject = achievementsSection?.subsections.find((p) => p.title === "APC (Auto Promo Creation)");
+const campaignProject = achievementsSection?.subsections.find((p) => p.title === "Campaign Manager");
+const additionalAchievements = achievementsSection?.subsections.find((p) =>
+  p.title === "Additional Achievements"
+);
+
+const skillGroups = skillsSection?.subsections || [];
 ---
 
 <BaseLayout>
-  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12">
-    <!-- Hero Section -->
-    <section class="mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold mb-2">{hero.name}</h1>
-      <p class="text-xl md:text-2xl text-muted mb-2">{hero.title}</p>
-      <p class="text-lg text-muted mb-6">{hero.tagline}</p>
-
-      <div class="flex flex-wrap gap-3 mb-8 no-print">
-        {
-          hero.actions.map((action) => (
-            <a
-              href={action.link}
-              class="hero-action px-4 py-2 bg-accent text-fg-inverted rounded hover:bg-accent-hover transition-colors"
+  <main class="min-h-screen" style="background-color: var(--color-page);">
+    <div class="max-w-6xl mx-auto px-4 py-8 md:py-12 lg:px-6">
+      <!-- Header (Hero + Featured Card) -->
+      <div class="header-grid grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <!-- Name Card -->
+        <div class="card p-8 flex flex-col justify-between">
+          <div>
+            <h1
+              class="mb-2"
+              style="font-size: var(--text-hero); font-weight: var(--font-weight-extrabold); color: var(--color-text); line-height: 1.1;"
             >
-              {action.text}
-            </a>
-          ))
-        }
+              {hero.name}
+            </h1>
+            <p class="text-xl font-semibold mb-2" style="color: var(--color-text);">
+              {hero.title}
+            </p>
+            <p style="color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+              {hero.tagline}
+            </p>
+          </div>
+
+          <!-- Hero Buttons -->
+          <div class="flex flex-wrap gap-3 no-print">
+            {
+              hero.actions.map((action) => {
+                let bgColor = "var(--color-btn-dark)";
+                let textColor = "white";
+                if (action.variant === "repo") {
+                  bgColor = "var(--color-kind-repo-tint)";
+                  textColor = "var(--color-kind-repo)";
+                } else if (action.variant === "neutral") {
+                  bgColor = "var(--color-btn-neutral)";
+                  textColor = "var(--color-text)";
+                }
+                return (
+                  <a
+                    href={action.href}
+                    class="inline-flex items-center justify-center min-h-[44px] px-6 rounded font-medium text-sm transition-opacity hover:opacity-80"
+                    style={`background-color: ${bgColor}; color: ${textColor};`}
+                  >
+                    {action.label}
+                  </a>
+                );
+              })
+            }
+          </div>
+        </div>
+
+        <!-- Featured Card -->
+        {trxyProject && <FeaturedCard project={trxyProject} />}
       </div>
-    </section>
 
-    <!-- CV Sections -->
-    {
-      sections.map((section) => (
-        <section class="mb-8">
-          <h2 class="text-3xl font-bold mb-6 mt-8 first:mt-0">{section.heading}</h2>
+      <!-- Profile Card -->
+      {
+        profileSection && (
+          <div class="card p-8 mb-12">
+            <p style="color: var(--color-text); font-size: var(--text-lg);">
+              {profileSection.subsections[0].content}
+            </p>
+          </div>
+        )
+      }
 
-          {section.intro !== undefined && (
-            <p class="text-muted mb-6">{section.intro}</p>
-          )}
+      <!-- Projects Section -->
+      {
+        personalProjectsSection && (
+          <section class="mb-12">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-3xl font-bold" style="color: var(--color-text);">
+                Personal Projects
+              </h2>
+              <div class="no-print">
+                <ColorKey />
+              </div>
+            </div>
+            {personalProjectsSection.intro && (
+              <p class="mb-6" style="color: var(--color-text-secondary);">
+                {personalProjectsSection.intro}
+              </p>
+            )}
+            <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherProjects.map((project) => (
+                <ProjectCard project={project} />
+              ))}
+            </div>
+          </section>
+        )
+      }
 
-          {section.subsections.map((sub) => (
-            <div class="mb-6">
-              {sub.title !== section.heading && (
-                <h3 class="text-xl font-semibold mb-3">{sub.title}</h3>
-              )}
-
-              {sub.role !== undefined && (
-                <p class="font-semibold mb-1">
-                  Role: {sub.role}
-                  {sub.dates !== undefined && (
-                    <span class="font-normal text-muted"> ({sub.dates})</span>
+      <!-- Key Achievements Section -->
+      {
+        achievementsSection && (
+          <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6" style="color: var(--color-text);">
+              Key Achievements
+            </h2>
+            <div class="space-y-6">
+              {mandyProject && (
+                <div class="card p-8">
+                  <p class="font-mono text-sm font-medium mb-2" style="color: var(--color-text-secondary);">
+                    {mandyProject.role}
+                  </p>
+                  <h3 class="text-xl font-bold mb-3" style="color: var(--color-text);">
+                    {mandyProject.title}
+                  </h3>
+                  <p class="mb-4" style="color: var(--color-text);">
+                    {mandyProject.description}
+                  </p>
+                  {mandyProject.bullets && mandyProject.bullets.length > 0 && (
+                    <ul class="list-disc pl-5 space-y-2">
+                      {mandyProject.bullets.map((bullet) => (
+                        <li style="color: var(--color-text-secondary);">{bullet}</li>
+                      ))}
+                    </ul>
                   )}
-                </p>
-              )}
-
-              {sub.dates !== undefined && sub.role === undefined && (
-                <p class="text-muted mb-2">{sub.dates}</p>
-              )}
-
-              {sub.content !== undefined && (
-                <p class="mb-4">{sub.content}</p>
-              )}
-
-              {sub.description !== undefined && (
-                <p class="mb-4">{sub.description}</p>
-              )}
-
-              {sub.subRoles !== undefined && sub.subRoles.length > 0 && (
-                <ul class="mb-4">
-                  {sub.subRoles.map((sr) => (
-                    <li class="mb-1">
-                      <span class="font-semibold">{sr.role}</span>{' '}
-                      <span class="text-muted">({sr.dates})</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {sub.bullets !== undefined && sub.bullets.length > 0 && (
-                <ul class="list-disc pl-5 mb-4">
-                  {sub.bullets.map((bullet) => (
-                    <li class="mb-1">{bullet}</li>
-                  ))}
-                </ul>
-              )}
-
-              {sub.badges !== undefined && sub.badges.length > 0 && (
-                <div class="flex flex-wrap gap-0 mb-2">
-                  {sub.badges.map((badge) => (
-                    <span class="tech-badge">{badge.name}</span>
-                  ))}
                 </div>
               )}
 
-              {sub.stack !== undefined && sub.stack.length > 0 && (
-                <div class="mb-4">
-                  {sub.stackLabel !== undefined && (
-                    <p class="font-semibold text-sm mb-1">{sub.stackLabel}:</p>
-                  )}
-                  <div class="flex flex-wrap gap-0">
-                    {sub.stack.map((tech) => (
-                      <span class="tech-badge">{tech}</span>
-                    ))}
-                  </div>
+              {apcProject && (
+                <div class="card p-8">
+                  <p class="font-mono text-sm font-medium mb-2" style="color: var(--color-text-secondary);">
+                    {apcProject.role}
+                  </p>
+                  <h3 class="text-xl font-bold mb-3" style="color: var(--color-text);">
+                    {apcProject.title}
+                  </h3>
+                  <p style="color: var(--color-text);">{apcProject.description}</p>
                 </div>
               )}
 
-              {sub.links !== undefined && sub.links.length > 0 && (
-                <div class="flex flex-wrap gap-3 mb-4 items-center">
-                  {sub.linksLabel !== undefined && (
-                    <span class="font-semibold">{sub.linksLabel}:</span>
+              {campaignProject && (
+                <div class="card p-8">
+                  <p class="font-mono text-sm font-medium mb-2" style="color: var(--color-text-secondary);">
+                    {campaignProject.role}
+                  </p>
+                  <h3 class="text-xl font-bold mb-3" style="color: var(--color-text);">
+                    {campaignProject.title}
+                  </h3>
+                  <p style="color: var(--color-text);">{campaignProject.description}</p>
+                </div>
+              )}
+
+              {additionalAchievements && (
+                <div class="card p-8">
+                  <h3 class="text-xl font-bold mb-4" style="color: var(--color-text);">
+                    {additionalAchievements.title}
+                  </h3>
+                  {additionalAchievements.bullets && (
+                    <ul class="list-disc pl-5 space-y-2">
+                      {additionalAchievements.bullets.map((bullet) => (
+                        <li style="color: var(--color-text);">{bullet}</li>
+                      ))}
+                    </ul>
                   )}
-                  {sub.links.map((link) => (
-                    <a href={link.url}>{link.label}</a>
-                  ))}
                 </div>
               )}
             </div>
-          ))}
-        </section>
-      ))
-    }
+          </section>
+        )
+      }
 
-    <!-- Footer -->
-    <footer class="mt-16 pt-8 border-t border-border text-center text-muted">
-      <p>References available upon request</p>
-    </footer>
+      <!-- Articles Section (conditional) -->
+      {
+        articles.length > 0 && (
+          <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6" style="color: var(--color-text);">
+              Articles
+            </h2>
+            <div class="articles-grid grid grid-cols-1 md:grid-cols-2 gap-6">
+              {articles.map((article) => (
+                <ArticleCard article={article} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <!-- Bottom Row (Work + Toolbox) -->
+      <div class="bottom-row-grid grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+        <!-- Work Card -->
+        {
+          employmentSection && (
+            <div class="card p-8">
+              <h3 class="text-xl font-bold mb-6" style="color: var(--color-text);">
+                Work
+              </h3>
+              {employmentSection.subsections.map((employment) => (
+                <div class="mb-6 last:mb-0">
+                  <h4 class="font-bold mb-2" style="color: var(--color-text);">
+                    {employment.title}
+                  </h4>
+                  {employment.subRoles && employment.subRoles.length > 0 && (
+                    <div class="space-y-1 mb-4">
+                      {employment.subRoles.map((sr) => (
+                        <div class="flex justify-between text-sm">
+                          <span style="color: var(--color-text);">{sr.role}</span>
+                          <span
+                            class="font-mono"
+                            style="color: var(--color-text-secondary);"
+                          >
+                            {sr.dates}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {employment.role && (
+                    <div class="flex justify-between mb-2">
+                      <span style="color: var(--color-text);">{employment.role}</span>
+                      {employment.dates && (
+                        <span class="font-mono" style="color: var(--color-text-secondary);">
+                          {employment.dates}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  {employment.bullets && employment.bullets.length > 0 && (
+                    <ul class="list-disc pl-5 space-y-1">
+                      {employment.bullets.map((bullet) => (
+                        <li class="text-sm" style="color: var(--color-text-secondary);">
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          )
+        }
+
+        <!-- Toolbox Card -->
+        {
+          skillsSection && (
+            <div class="card p-8">
+              <h3 class="text-xl font-bold mb-6" style="color: var(--color-text);">
+                Toolbox
+              </h3>
+              <div class="space-y-4">
+                {skillGroups.map((group) => (
+                  <div>
+                    <h4
+                      class="font-mono text-xs font-bold uppercase mb-2"
+                      style="color: var(--color-text);"
+                    >
+                      {group.title}
+                    </h4>
+                    {group.badges && group.badges.length > 0 && (
+                      <p class="font-mono text-sm" style="color: var(--color-text-secondary);">
+                        {group.badges.map((b) => b.name).join(", ")}
+                      </p>
+                    )}
+                    {group.content && (
+                      <p class="text-sm" style="color: var(--color-text-secondary);">
+                        {group.content}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Footer Card -->
+      <div class="card p-8">
+        <div class="space-y-6">
+          <!-- Education -->
+          {
+            educationSection && (
+              <div>
+                <h3 class="font-bold mb-2" style="color: var(--color-text);">
+                  Education
+                </h3>
+                {educationSection.subsections.map((edu) => (
+                  <div>
+                    <p class="font-medium" style="color: var(--color-text);">
+                      {edu.title}
+                    </p>
+                    <p class="text-sm" style="color: var(--color-text-secondary);">
+                      {edu.description}
+                    </p>
+                    {edu.dates && (
+                      <p class="font-mono text-xs" style="color: var(--color-text-secondary);">
+                        {edu.dates}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )
+          }
+
+          <!-- Interests -->
+          {
+            interestsSection && (
+              <div>
+                <h3 class="font-bold mb-2" style="color: var(--color-text);">
+                  Interests
+                </h3>
+                <p style="color: var(--color-text);">
+                  {interestsSection.subsections[0].content}
+                </p>
+              </div>
+            )
+          }
+
+          <!-- Contact Links -->
+          {
+            contactSection && (
+              <div>
+                <h3 class="font-bold mb-3" style="color: var(--color-text);">
+                  Contact
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                  {contactSection.subsections[0].links?.map((link) => (
+                    <LinkChip kind={link.kind} label={link.label} href={link.href} />
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          <!-- Footer Text -->
+          <p
+            class="text-sm border-t pt-6"
+            style="border-color: var(--color-text-secondary); color: var(--color-text-secondary);"
+          >
+            References available upon request
+          </p>
+        </div>
+      </div>
+    </div>
   </main>
 </BaseLayout>

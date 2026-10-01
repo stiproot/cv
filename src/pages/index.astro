@@ -33,34 +33,37 @@ const { hero, sections } = cvData;
         <section class="mb-8">
           <h2 class="text-3xl font-bold mb-6 mt-8 first:mt-0">{section.heading}</h2>
 
-          {section.subsections.map((subsection) => (
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold mb-3">{subsection.title}</h3>
+          {section.subsections.map((subsection) => {
+            const sub = subsection as any;
+            return (
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-3">{sub.title}</h3>
 
-              {subsection.content && (
-                <p class="text-gray-700 mb-4" set:html={subsection.content} />
-              )}
+                {typeof sub.content === 'string' && (
+                  <p class="text-gray-700 mb-4" set:html={sub.content} />
+                )}
 
-              {subsection.badges && (
-                <div class="flex flex-wrap gap-0">
-                  {subsection.badges.map((badge) => (
-                    <span class="tech-badge">{badge.name}</span>
-                  ))}
-                </div>
-              )}
+                {Array.isArray(sub.badges) && (
+                  <div class="flex flex-wrap gap-0">
+                    {sub.badges.map((badge: any) => (
+                      <span class="tech-badge">{badge.name}</span>
+                    ))}
+                  </div>
+                )}
 
-              {subsection.details && (
-                <div class="text-gray-700 mb-4">
-                  {subsection.details.map((detail) => (
-                    <p
-                      set:html={detail}
-                      class="mb-2"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+                {Array.isArray(sub.details) && (
+                  <div class="text-gray-700 mb-4">
+                    {sub.details.map((detail: string) => (
+                      <p
+                        set:html={detail}
+                        class="mb-2"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </section>
       ))
     }

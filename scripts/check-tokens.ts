@@ -7,16 +7,16 @@
  * but silently stops tracking the token tomorrow.
  */
 
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { join, relative } from "node:path";
 
-const ROOT = new URL('..', import.meta.url).pathname;
-const TARGET = join(ROOT, 'src');
+const ROOT = new URL("..", import.meta.url).pathname;
+const TARGET = join(ROOT, "src");
 
 /** tokens.css is the canonical source of design literals — that's where they belong. */
-const isTokenFile = (path: string): boolean => path.endsWith('tokens.css');
+const isTokenFile = (path: string): boolean => path.endsWith("tokens.css");
 
-const EXTENSIONS = ['.astro', '.css', '.ts', '.tsx'];
+const EXTENSIONS = [".astro", ".css", ".ts", ".tsx"];
 
 interface Violation {
   file: string;
@@ -32,35 +32,35 @@ const DECLARATIONS: Array<{
   hint: string;
 }> = [
   {
-    name: 'font-size',
+    name: "font-size",
     property: /font-size:\s*([^;]+)/,
-    ok: (v) => v.includes('var(--text-') || v === 'inherit',
-    hint: 'use var(--text-*) from tokens.css',
+    ok: (v) => v.includes("var(--text-") || v === "inherit",
+    hint: "use var(--text-*) from tokens.css",
   },
   {
-    name: 'border-radius',
+    name: "border-radius",
     property: /border-radius:\s*([^;]+)/,
-    ok: (v) => v.includes('var(--radius-') || v === '0' || v === '50%',
-    hint: 'use var(--radius-*) from tokens.css',
+    ok: (v) => v.includes("var(--radius-") || v === "0" || v === "50%",
+    hint: "use var(--radius-*) from tokens.css",
   },
   {
-    name: 'font-weight',
+    name: "font-weight",
     property: /font-weight:\s*([^;]+)/,
-    ok: (v) => v.includes('var(--font-weight-') || v === 'inherit',
-    hint: 'use var(--font-weight-*) from tokens.css',
+    ok: (v) => v.includes("var(--font-weight-") || v === "inherit",
+    hint: "use var(--font-weight-*) from tokens.css",
   },
 ];
 
 const COLOR_RULES: Array<{ name: string; pattern: RegExp; hint: string }> = [
   {
-    name: 'hex-color',
+    name: "hex-color",
     pattern: /(?<![\w)])#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b/,
-    hint: 'use var(--color-*) from tokens.css',
+    hint: "use var(--color-*) from tokens.css",
   },
   {
-    name: 'rgb-color',
+    name: "rgb-color",
     pattern: /\b(?:rgba?|hsla?)\(\s*\d/,
-    hint: 'use var(--color-*) from tokens.css',
+    hint: "use var(--color-*) from tokens.css",
   },
 ];
 
@@ -87,7 +87,7 @@ for (const file of walk(TARGET)) {
   const rel = relative(TARGET, file);
   if (isTokenFile(rel)) continue;
 
-  const lines = readFileSync(file, 'utf8').split('\n');
+  const lines = readFileSync(file, "utf8").split("\n");
   lines.forEach((text, index) => {
     if (ALLOWED_LINE.some((allowed) => allowed.test(text))) return;
 
@@ -118,16 +118,14 @@ for (const file of walk(TARGET)) {
 }
 
 if (violations.length > 0) {
-  process.stderr.write(
-    `check-tokens — ${violations.length} hardcoded design value(s):\n\n`
-  );
+  process.stderr.write(`check-tokens — ${violations.length} hardcoded design value(s):\n\n`);
   for (const v of violations) {
     process.stderr.write(`  ${v.file}:${v.line}\n`);
     process.stderr.write(`    ${v.text}\n`);
     process.stderr.write(`    ${v.rule}\n\n`);
   }
-  process.stderr.write('Design tokens belong in src/styles/tokens.css.\n');
+  process.stderr.write("Design tokens belong in src/styles/tokens.css.\n");
   process.exit(1);
 }
 
-process.stdout.write('check-tokens — no hardcoded design values\n');
+process.stdout.write("check-tokens — no hardcoded design values\n");

@@ -4,7 +4,7 @@
  */
 
 /** Canonical origin — Firebase Hosting site. */
-export const SITE_URL = 'https://stiproot-cv.web.app';
+export const SITE_URL = "https://stiproot-cv.web.app";
 
 /**
  * Indexing starts OFF. A comment by the flag says flipping it is the cutover.
@@ -14,13 +14,13 @@ export const SITE_URL = 'https://stiproot-cv.web.app';
 export const INDEXABLE = false;
 
 export const AUTHOR = {
-  name: 'Simon Stipcich',
-  email: 'code.stip.si@gmail.com',
+  name: "Simon Stipcich",
+  email: "code.stip.si@gmail.com",
   copyrightYear: 2026,
 } as const;
 
 export const LINKS = {
-  github: 'https://github.com/stiproot',
-  linkedin: 'https://www.linkedin.com/in/stiproot',
-  email: 'mailto:code.stip.si@gmail.com',
+  github: "https://github.com/stiproot",
+  linkedin: "https://www.linkedin.com/in/stiproot",
+  email: "mailto:code.stip.si@gmail.com",
 } as const;

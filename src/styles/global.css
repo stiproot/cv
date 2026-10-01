@@ -1,4 +1,4 @@
-@import './tokens.css';
+@import "./tokens.css";
 
 @tailwind base;
 @tailwind components;
@@ -40,14 +40,14 @@ a:hover {
 
 /* Separate tech badges in print with commas */
 .tech-badge:not(:last-child)::after {
-  content: ',';
+  content: ",";
   margin-right: var(--space-2);
 }
 
 @media print {
   html {
-    margin: var(--print-margin-top) var(--print-margin-right)
-      var(--print-margin-bottom) var(--print-margin-left);
+    margin: var(--print-margin-top) var(--print-margin-right) var(--print-margin-bottom)
+      var(--print-margin-left);
   }
 
   body {
@@ -64,7 +64,7 @@ a:hover {
   }
 
   a[href]::after {
-    content: '';
+    content: "";
   }
 
   h1,

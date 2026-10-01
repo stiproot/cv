@@ -139,4 +139,4 @@ All design values (colors, spacing, typography, radii) are defined in
 
 ---
 
-*Built with Astro + Tailwind CSS + Firebase Hosting*
+_Built with Astro + Tailwind CSS + Firebase Hosting_

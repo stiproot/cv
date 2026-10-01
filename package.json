@@ -8,8 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "type-check": "astro check",
-    "lint": "oxlint . && oxfmt --check . && bun scripts/check-tokens.ts",
-    "format": "oxfmt .",
+    "lint": "bunx oxlint . && bunx oxfmt --check . && bun scripts/check-tokens.ts",
+    "format": "bunx oxfmt .",
     "generate:pdf": "bun scripts/generate-pdf.mjs",
     "build:with-pdf": "bun run build && bun run generate:pdf",
     "clean": "rm -rf dist *.tsbuildinfo .astro"

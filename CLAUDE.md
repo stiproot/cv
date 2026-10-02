@@ -92,6 +92,8 @@ no stale links, no missed badge.
   `robots.txt` disallows all. Flip the flag when the site is live.
 - **Actions are pinned to commit SHAs**, with the tag in a comment beside them.
   Dependabot moves the pins; do not "tidy" them back to tags.
+- **Every PR runs `.github/workflows/ci.yml`** (job `Check`: lint, type-check, build with PDF —
+  the deploy job's checks). Keep its steps in step with `deploy.yml`.
 
 ## Framework docs
 

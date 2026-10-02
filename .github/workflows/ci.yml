@@ -1,17 +1,19 @@
-name: Deploy CV
+name: CI
 
+# Runs the deploy job's checks on every pull request, so a change is known to
+# build before it reaches main — where the deploy workflow publishes it. The
+# job name `Check` is the required status check in the `main` ruleset.
 on:
-  push:
+  pull_request:
     branches: [main]
-  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  deploy:
+  check:
+    name: Check
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
@@ -44,11 +46,3 @@ jobs:
 
       - name: Build with PDF
         run: bun run build:with-pdf
-
-      - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a # v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
-          channelId: live

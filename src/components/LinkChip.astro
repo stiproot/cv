@@ -1,4 +1,5 @@
 ---
+import { newTabAttrs } from "~/lib/links";
 import type { LinkKind } from "../data/cv";
 
 interface Props {
@@ -16,6 +17,7 @@ const colorVar = `var(--color-kind-${kind})`;
 
 <a
   href={href}
+  {...newTabAttrs(href)}
   class="link-chip"
   data-inverted={inverted}
   style={`--chip-bg: ${colorVarTint}; --chip-color: ${colorVar};`}

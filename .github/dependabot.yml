@@ -11,7 +11,7 @@ updates:
     schedule: { interval: weekly }
     commit-message: { prefix: "ci" }
 
-  - package-ecosystem: npm
+  - package-ecosystem: bun
     directory: /
     schedule: { interval: weekly }
     commit-message: { prefix: "deps" }

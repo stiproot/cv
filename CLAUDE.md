@@ -90,6 +90,8 @@ no stale links, no missed badge.
 - **Indexing is OFF by default.** `INDEXABLE = false` in `src/config/site.ts`
   makes BaseLayout emit `<meta name="robots" content="noindex, nofollow">` and
   `robots.txt` disallows all. Flip the flag when the site is live.
+- **Actions are pinned to commit SHAs**, with the tag in a comment beside them.
+  Dependabot moves the pins; do not "tidy" them back to tags.
 
 ## Framework docs
 

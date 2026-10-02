@@ -443,5 +443,14 @@ export const cvData = {
     ],
   },
   sections,
-  articles: [],
+  articles: [
+    {
+      type: "article" as const,
+      title: "A Framework for Evaluating Agentic Skills at Scale",
+      href: "https://arxiv.org/abs/2606.17819",
+      source: "arXiv · co-author",
+      summary:
+        "Research paper (cs.SE, 2026) presenting a framework for evaluating individual agent skills on realistic tasks across commercial and open-source models.",
+    },
+  ],
 };

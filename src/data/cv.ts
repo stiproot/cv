@@ -215,6 +215,19 @@ const sections: Section[] = [
         ],
       },
       {
+        title: "vizzle",
+        description:
+          "UML visualization for git: parses a codebase or a git diff and draws class and component diagrams, as Mermaid or an interactive page, with changes highlighted. Keeps architecture diagrams in docs true to the code, failing CI when they drift.",
+        stack: ["Rust", "Python", "TypeScript", "tree-sitter", "d3.js"],
+        stackLabel: "Stack",
+        links: [
+          { kind: "site", label: "Website", href: "https://stiproot-vizzle.web.app" },
+          { kind: "repo", label: "GitHub", href: "https://github.com/stiproot/vizzle" },
+          { kind: "package", label: "PyPI", href: "https://pypi.org/project/vizzle/" },
+        ],
+        linksLabel: "Links",
+      },
+      {
         title: "TaskTree",
         description:
           "A .NET library for building composable, type-safe task workflows (10K+ NuGet downloads).",
@@ -346,9 +359,15 @@ const sections: Section[] = [
     heading: "Employment Experience",
     subsections: [
       {
+        title: "Dijkstrack",
+        role: "Senior Engineer",
+        dates: "April 2026 - present",
+        bullets: ["Contracted to Tessl"],
+      },
+      {
         title: "Derivco",
         subRoles: [
-          { role: "Senior Developer", dates: "2022 - present" },
+          { role: "Senior Developer", dates: "2022 - April 2026" },
           { role: "Intermediate Developer", dates: "2019 - 2022" },
         ],
       },
@@ -451,6 +470,13 @@ export const cvData = {
       source: "arXiv · co-author",
       summary:
         "Research paper (cs.SE, 2026) presenting a framework for evaluating individual agent skills on realistic tasks across commercial and open-source models.",
+    },
+    {
+      type: "video" as const,
+      title: "Inside Kikimora: We Built a Dark Software Factory",
+      href: "https://www.youtube.com/watch?v=u37qkpp5eB8",
+      source: "AI Native Dev",
+      summary: "A look inside Kikimora, a dark software factory built at Tessl.",
     },
   ],
 };
